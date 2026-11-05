@@ -30,6 +30,31 @@
       <div class="hero-mark">FW<span>.</span></div>
     </section>
 
+        <section class="section contact-section" id="contact">
+      <div class="contact-info">
+        <span class="eyebrow">GET IN TOUCH</span><h2>LET'S BUILD<br><span>SOMETHING STRONG.</span></h2>
+        <p>Tell us what you need. Our team will get back to you.</p>
+        <div class="contact-lines">
+          <p><b>PHONE</b><span id="contactPhone">Add your phone number in Admin</span></p>
+          <p><b>ADDRESS</b><span id="contactAddress">Add your business address in Admin</span></p>
+          <p><b>EMAIL</b><span id="contactEmail">Add your email in Admin</span></p>
+        </div>
+      </div>
+      <form class="enquiry-form panel" id="enquiryForm">
+        <h3>SEND AN ENQUIRY</h3>
+        <label>Your name<input name="name" required maxlength="100" placeholder="Full name"></label>
+        <div class="form-row">
+          <label>Mobile number<input name="mobile" required maxlength="25" placeholder="Your mobile number"></label>
+          <label>Service required<select name="service" id="enquiryService" required><option value="">Select a service</option></select></label>
+        </div>
+        <label>Requirement<textarea name="message" rows="4" required maxlength="1500" placeholder="Describe your requirement"></textarea></label>
+        <label class="honeypot">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+        <button class="button" type="submit">SEND ENQUIRY <span>→</span></button>
+        <p class="form-status" id="enquiryStatus" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
     <section class="section about-section" id="about">
       <div class="about-copy">
         <span class="eyebrow">ABOUT OUR COMPANY</span>
@@ -70,31 +95,6 @@
         <p class="form-status" id="reviewStatus" aria-live="polite"></p>
       </form>
     </section>
-
-    <section class="section contact-section" id="contact">
-      <div class="contact-info">
-        <span class="eyebrow">GET IN TOUCH</span><h2>LET'S BUILD<br><span>SOMETHING STRONG.</span></h2>
-        <p>Tell us what you need. Our team will get back to you.</p>
-        <div class="contact-lines">
-          <p><b>PHONE</b><span id="contactPhone">Add your phone number in Admin</span></p>
-          <p><b>ADDRESS</b><span id="contactAddress">Add your business address in Admin</span></p>
-          <p><b>EMAIL</b><span id="contactEmail">Add your email in Admin</span></p>
-        </div>
-      </div>
-      <form class="enquiry-form panel" id="enquiryForm">
-        <h3>SEND AN ENQUIRY</h3>
-        <label>Your name<input name="name" required maxlength="100" placeholder="Full name"></label>
-        <div class="form-row">
-          <label>Mobile number<input name="mobile" required maxlength="25" placeholder="Your mobile number"></label>
-          <label>Service required<select name="service" id="enquiryService" required><option value="">Select a service</option></select></label>
-        </div>
-        <label>Requirement<textarea name="message" rows="4" required maxlength="1500" placeholder="Describe your requirement"></textarea></label>
-        <label class="honeypot">Website<input name="website" tabindex="-1" autocomplete="off"></label>
-        <button class="button" type="submit">SEND ENQUIRY <span>→</span></button>
-        <p class="form-status" id="enquiryStatus" aria-live="polite"></p>
-      </form>
-    </section>
-  </main>
 
   <footer><a class="logo" href="#home">FAB<span>WORKS</span></a><p>Fabrication & Welding Works</p><small>© <span id="year"></span> FABWORKS. All rights reserved.</small></footer>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
