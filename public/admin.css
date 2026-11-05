@@ -1,0 +1,25 @@
+.admin-body{min-height:100vh;background:#101010}
+.admin-body .site-header small{font:700 11px 'DM Sans';color:var(--orange);letter-spacing:2px}
+.admin-wrap{max-width:1200px;margin:55px auto;padding:0 22px 70px}
+.login-panel{max-width:440px;margin:70px auto}
+.login-panel h1,.admin-title h1{font-family:'Barlow Condensed';font-size:42px;margin:8px 0 25px}
+.login-panel h1 span,.admin-title h1 span{color:var(--orange)}
+.login-panel .button{width:100%;justify-content:center}
+.admin-title{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:25px}
+.button.secondary{background:#333;color:#fff;margin-left:8px}
+.admin-tabs{display:flex;gap:8px;flex-wrap:wrap;border-bottom:1px solid #333;margin-bottom:25px}
+.tab{background:#202020;color:#ddd;border:1px solid #333;padding:11px 17px;cursor:pointer}
+.tab.active{background:var(--orange);color:white;border-color:var(--orange)}
+.admin-panel h2{font-family:'Barlow Condensed';font-size:30px;margin:15px 0}
+.admin-form{margin:20px 0}
+.admin-record{background:#1b1b1b;border:1px solid #333;padding:18px;margin:12px 0;display:flex;justify-content:space-between;gap:20px;align-items:center}
+.admin-record p{color:#aaa;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}
+.admin-actions{display:flex;gap:7px;flex-wrap:wrap}
+.admin-actions button{padding:8px 11px;border:1px solid #555;background:#292929;color:#fff;cursor:pointer}
+.admin-actions button.approve{border-color:#238b50;color:#7be0a1}
+.admin-actions button.reject,.admin-actions button.delete{border-color:#a33;color:#ff9b9b}
+.admin-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.admin-gallery figure{position:relative}
+.admin-gallery img{width:100%;height:150px;object-fit:cover}
+.admin-gallery button{width:100%;padding:8px;background:#292929;color:#fff;border:1px solid #555;cursor:pointer}
+@media(max-width:650px){.admin-title{align-items:flex-start;flex-direction:column}.admin-record{align-items:flex-start;flex-direction:column}.admin-gallery{grid-template-columns:repeat(2,1fr)}}

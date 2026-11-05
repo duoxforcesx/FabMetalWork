@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FABWORKS Admin</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/admin.css">
+</head>
+<body class="admin-body">
+  <header class="site-header"><a class="logo" href="/">FAB<span>WORKS</span> <small>ADMIN</small></a><a class="text-link" href="/">← VIEW WEBSITE</a></header>
+  <main class="admin-wrap">
+    <section class="panel login-panel" id="loginPanel">
+      <span class="eyebrow">PRIVATE AREA</span><h1>ADMIN <span>LOGIN</span></h1>
+      <form id="loginForm">
+        <label>Username<input name="username" required autocomplete="username"></label>
+        <label>Password<input name="password" type="password" required autocomplete="current-password"></label>
+        <button class="button" type="submit">LOGIN</button>
+        <p class="form-status" id="loginStatus"></p>
+      </form>
+    </section>
+
+    <section id="dashboard" hidden>
+      <div class="admin-title"><div><span class="eyebrow">CONTROL CENTRE</span><h1>ADMIN <span>DASHBOARD</span></h1></div><button class="button secondary" id="logoutBtn">LOGOUT</button></div>
+      <div class="admin-tabs">
+        <button class="tab active" data-tab="enquiries">Enquiries</button>
+        <button class="tab" data-tab="reviews">Reviews</button>
+        <button class="tab" data-tab="services">Services</button>
+        <button class="tab" data-tab="gallery">Gallery</button>
+        <button class="tab" data-tab="settings">Website Details</button>
+      </div>
+      <section class="admin-panel" id="tab-enquiries"><h2>Customer Enquiries</h2><div id="enquiryAdminList"></div></section>
+      <section class="admin-panel" id="tab-reviews" hidden><h2>Review Approval</h2><div id="reviewAdminList"></div></section>
+      <section class="admin-panel" id="tab-services" hidden>
+        <h2>Manage Services</h2>
+        <form id="serviceForm" class="panel admin-form"><input type="hidden" name="id"><label>Service title<input name="title" required></label><label>Description<textarea name="description" required rows="3"></textarea></label><button class="button" type="submit">SAVE SERVICE</button><button class="button secondary" type="button" id="cancelService">CLEAR</button></form>
+        <div id="serviceAdminList"></div>
+      </section>
+      <section class="admin-panel" id="tab-gallery" hidden><h2>Project Gallery</h2><form id="galleryForm" class="panel admin-form"><label>Choose photo (JPG, PNG, WEBP; max 5 MB)<input type="file" name="photo" accept="image/jpeg,image/png,image/webp" required></label><button class="button" type="submit">UPLOAD PHOTO</button><p class="form-status" id="galleryStatus"></p></form><div id="galleryAdminList" class="admin-gallery"></div></section>
+      <section class="admin-panel" id="tab-settings" hidden><h2>Website Details</h2><form id="settingsForm" class="panel admin-form">
+        <div class="form-row"><label>Business name<input name="businessName"></label><label>Tagline<input name="tagline"></label></div>
+        <div class="form-row"><label>Phone<input name="phone"></label><label>WhatsApp number<input name="whatsapp"></label></div>
+        <div class="form-row"><label>Email<input name="email"></label><label>Address<input name="address"></label></div>
+        <div class="form-row"><label>Years in business<input name="yearsBusiness"></label><label>Years experience<input name="yearsExperience"></label></div>
+        <label>About text<textarea name="about" rows="5"></textarea></label><button class="button" type="submit">SAVE DETAILS</button><p class="form-status" id="settingsStatus"></p>
+      </form></section>
+    </section>
+  </main>
+  <script src="/admin.js"></script>
+</body>
+</html>

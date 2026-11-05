@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap');
+:root{--orange:#ff7900;--bg:#101010;--panel:#1a1a1a;--muted:#aaa;--line:#303030}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--bg);color:#fff;font-family:'DM Sans',Arial,sans-serif;line-height:1.6}
+a{color:inherit;text-decoration:none}
+.site-header{height:auto;min-height:78px;padding:18px 7%;display:flex;align-items:center;justify-content:space-between;gap:25px;background:#090909;position:sticky;top:0;z-index:20;border-bottom:1px solid #242424}
+.logo{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:800;letter-spacing:1px}
+.logo span,.hero h1 span,.about-copy h2 span,.section-heading h2 span,.contact-info h2 span{color:var(--orange)}
+nav{display:flex;align-items:center;gap:25px;flex-wrap:wrap}
+nav a{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#ddd;transition:.2s}
+nav a:hover,.text-link:hover{color:var(--orange)}
+.admin-link{border:1px solid var(--orange);padding:7px 12px;color:var(--orange)}
+.menu-toggle{display:none;background:none;color:white;border:1px solid #444;padding:7px 11px;font-size:20px}
+.hero{min-height:590px;padding:90px 8%;display:flex;align-items:center;position:relative;overflow:hidden;background:#151515 url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1800') center/cover no-repeat}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.94) 0%,rgba(0,0,0,.7) 48%,rgba(0,0,0,.12) 100%)}
+.hero-content{position:relative;z-index:1;max-width:720px}
+.eyebrow{color:var(--orange);font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase}
+.hero h1,.about-copy h2,.contact-info h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(44px,6vw,76px);line-height:1.02;font-weight:800;margin:18px 0}
+.hero-content>p{font-size:18px;color:#ddd;margin:20px 0 30px}
+.button{display:inline-flex;align-items:center;gap:15px;border:0;background:var(--orange);color:#fff;padding:14px 23px;font-weight:800;font-size:13px;letter-spacing:1px;cursor:pointer;transition:.2s}
+.button:hover{background:#fff;color:#111}
+.hero-mark{position:absolute;right:8%;bottom:5%;font-family:'Barlow Condensed';font-size:clamp(80px,18vw,220px);font-weight:800;color:#ffffff12;line-height:1}
+.hero-mark span{color:#ff790055}
+.section{padding:95px 8%}
+.about-section{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center;background:#171717}
+.about-copy{max-width:650px}
+.about-copy h2,.contact-info h2{font-size:clamp(38px,5vw,58px)}
+.about-copy p,.contact-info>p{color:#bbb;margin:0 0 17px;line-height:1.9}
+.text-link{display:inline-block;color:var(--orange);font-size:13px;font-weight:800;letter-spacing:1px;margin-top:12px}
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.stat{background:#202020;border:1px solid #333;border-bottom:3px solid var(--orange);padding:28px 18px;text-align:center}
+.stat strong{display:block;font-family:'Barlow Condensed';font-size:43px;color:var(--orange);line-height:1.2}
+.stat span{font-size:11px;color:#ccc;letter-spacing:1px;font-weight:700}
+.section-heading{text-align:center;margin-bottom:42px}
+.section-heading h2{font-family:'Barlow Condensed';font-size:48px;line-height:1.1;margin:9px 0}
+.section-heading>p{color:var(--muted)}
+.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.service-card{background:var(--panel);padding:30px;border:1px solid var(--line);border-bottom:3px solid var(--orange);min-height:190px;transition:.25s}
+.service-card:hover{transform:translateY(-7px);border-color:var(--orange)}
+.service-number{font-family:'Barlow Condensed';font-size:30px;color:#666}
+.service-card h3{font-family:'Barlow Condensed';font-size:25px;margin:8px 0;color:var(--orange)}
+.service-card p{color:#bbb;font-size:14px}
+.gallery-section{background:#171717}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.gallery-grid img{width:100%;height:240px;object-fit:cover;border:1px solid #333}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:35px}
+.review-card{background:var(--panel);padding:23px;border:1px solid var(--line)}
+.stars{color:var(--orange);letter-spacing:3px;font-size:19px}
+.review-card h4{margin:9px 0 4px}
+.review-card p{color:#bbb;font-size:14px}
+.panel{background:#1b1b1b;border:1px solid #333;padding:28px}
+.review-form{max-width:780px;margin:0 auto}
+.panel h3{font-family:'Barlow Condensed';font-size:28px;margin-bottom:20px}
+label{display:block;color:#ddd;font-size:13px;font-weight:600;margin-bottom:15px}
+input,select,textarea{display:block;width:100%;margin-top:7px;padding:12px 13px;background:#101010;border:1px solid #3a3a3a;color:#fff;font:inherit;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--orange)}
+textarea{resize:vertical}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.form-note,.form-status{font-size:12px;color:#aaa;margin-top:12px}
+.contact-section{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;background:#171717;align-items:start}
+.contact-info h2{font-size:clamp(38px,4.5vw,56px)}
+.contact-lines{margin-top:30px}
+.contact-lines p{border-bottom:1px solid #333;padding:13px 0}
+.contact-lines b{display:block;color:var(--orange);font-size:11px;letter-spacing:1px}
+.contact-lines span{color:#ddd}
+.enquiry-form .button{width:100%;justify-content:center}
+.honeypot{position:absolute;left:-9999px}
+footer{padding:35px 8%;text-align:center;background:#090909;border-top:1px solid #282828}
+footer p{color:#aaa;margin:5px 0}
+footer small{color:#777}
+.empty-state{color:#888;text-align:center;grid-column:1/-1;padding:20px}
+.toast{position:fixed;right:20px;bottom:20px;z-index:50;background:#222;border-left:4px solid var(--orange);padding:14px 18px;max-width:340px;display:none;box-shadow:0 8px 30px #0008}
+.toast.show{display:block}
+@media(max-width:900px){.site-header{padding:15px 5%}nav{gap:13px}.section{padding:70px 6%}.about-section,.contact-section{gap:35px}}
+@media(max-width:700px){.site-header{flex-wrap:wrap}.menu-toggle{display:block}nav{display:none;width:100%;flex-direction:column;align-items:flex-start;padding:12px 0}nav.open{display:flex}.hero{min-height:520px;padding:70px 6%}.hero-mark{right:4%}.about-section,.contact-section{grid-template-columns:1fr}.service-grid,.review-grid,.gallery-grid{grid-template-columns:1fr}.stats-grid{max-width:500px}.form-row{grid-template-columns:1fr}.section-heading h2{font-size:40px}}
