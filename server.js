@@ -79,7 +79,7 @@ if (serviceCount === 0) {
 }
 
 const defaultSettings = {
-  businessName: "FABWORKS",
+  businessName: "AS FABRICATOR",
   tagline: "Professional Fabrication & Welding Services",
   phone: "",
   whatsapp: "",
