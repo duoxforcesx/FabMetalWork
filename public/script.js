@@ -91,9 +91,9 @@ async function loadWebsite() {
   $("#aboutText").textContent = s.about || "";
   $("#yearsBusiness").textContent = s.yearsBusiness || "5+";
   $("#yearsExperience").textContent = s.yearsExperience || "10+";
-  $("#contactPhone").textContent = s.phone || "Add your phone number in Admin";
-  $("#contactAddress").textContent = s.address || "Add your business address in Admin";
-  $("#contactEmail").textContent = s.email || "Add your email in Admin";
+  $("#contactPhone").textContent = "+91 6262324380";
+$("#contactAddress").textContent = "NEW BUS STAND, BEHROR, KOTPUTLI-BEHROR, RAJASTHAN - 301701";
+$("#contactEmail").textContent = "a03124936@gmail.com";
   renderServices(data.services);
   renderReviews(data.reviews);
   renderGallery(data.gallery);
