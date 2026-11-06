@@ -108,25 +108,34 @@ $("#mainNav").addEventListener("click", event => {
   if (event.target.tagName === "A") $("#mainNav").classList.remove("open");
 });
 
-$("#enquiryForm").addEventListener("submit", async event => {
+$("#enquiryForm").addEventListener("submit", event => {
   event.preventDefault();
+
   const form = event.currentTarget;
   const status = $("#enquiryStatus");
-  const button = form.querySelector("button");
-  button.disabled = true;
-  status.textContent = "Sending your enquiry...";
+
   const values = Object.fromEntries(new FormData(form).entries());
-  try {
-    const result = await api("/api/enquiries", { method: "POST", body: JSON.stringify(values) });
-    form.reset();
-    status.textContent = "Thank you! Your enquiry has been received. We will contact you shortly.";
-    showToast("Thank you for contacting us. We will contact you shortly.");
-    if (!result.whatsappSent) console.info("Enquiry saved. WhatsApp notification is not configured yet.");
-  } catch (error) {
-    status.textContent = error.message;
-  } finally {
-    button.disabled = false;
-  }
+
+  const message = `
+NEW WEBSITE ENQUIRY
+
+Name: ${values.name || ""}
+Mobile: ${values.mobile || ""}
+Service: ${values.service || ""}
+Requirement: ${values.message || ""}
+
+Source: ASFABRICATOR Website
+  `.trim();
+
+  const whatsappURL =
+    "https://wa.me/916262324380?text=" + encodeURIComponent(message);
+
+  status.textContent = "Opening WhatsApp...";
+  window.open(whatsappURL, "_blank");
+
+  showToast("Your enquiry is ready. Please press Send on WhatsApp.");
+
+  status.textContent = "Please send your enquiry on WhatsApp.";
 });
 
 $("#reviewForm").addEventListener("submit", async event => {
