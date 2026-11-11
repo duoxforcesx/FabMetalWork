@@ -1,7 +1,7 @@
 
 const $ = (selector) => document.querySelector(selector);
 
-const API_BASE = "https://fabworks-api.duoxforcesx.workers.dev";
+const API_BASE = "https://AS-FABRICATOR-api.duoxforcesx.workers.dev";
 
 function showToast(message) {
   const toast = $("#toast");
@@ -136,10 +136,10 @@ async function loadWebsite() {
   const s = data.settings || {};
 
   document.title =
-    `${s.businessName || "FABWORKS"} | Fabrication & Welding`;
+    `${s.businessName || "AS-FABRICATOR"} | Fabrication & Welding`;
 
   document.querySelectorAll(".logo").forEach(el => {
-    el.textContent = s.businessName || "FABWORKS";
+    el.textContent = s.businessName || "AS-FABRICATOR";
   });
 
   if ($("#heroTagline")) {
