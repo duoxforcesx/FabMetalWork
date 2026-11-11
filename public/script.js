@@ -16,12 +16,10 @@ function showToast(message) {
 }
 
 async function api(url, options = {}) {
-  const isForm = options.body instanceof FormData;
-
   const response = await fetch(`${API_BASE}${url}`, {
     ...options,
     headers: {
-      ...(isForm ? {} : { "Content-Type": "application/json" }),
+      "Content-Type": "application/json",
       ...(options.headers || {})
     }
   });
@@ -35,6 +33,7 @@ async function api(url, options = {}) {
   return data;
 }
 
+// SERVICES
 function renderServices(services = []) {
   const list = $("#serviceList");
   const select = $("#enquiryService");
@@ -62,7 +61,7 @@ function renderServices(services = []) {
     title.textContent = service.title;
 
     const desc = document.createElement("p");
-    desc.textContent = service.description;
+    desc.textContent = service.description || "";
 
     card.append(number, title, desc);
     list.append(card);
@@ -75,6 +74,7 @@ function renderServices(services = []) {
   });
 }
 
+// REVIEWS
 function renderReviews(reviews = []) {
   const list = $("#reviewList");
   if (!list) return;
@@ -94,7 +94,8 @@ function renderReviews(reviews = []) {
     const stars = document.createElement("div");
     stars.className = "stars";
     stars.textContent =
-      "★".repeat(review.rating) + "☆".repeat(5 - review.rating);
+      "★".repeat(Number(review.rating)) +
+      "☆".repeat(5 - Number(review.rating));
 
     const name = document.createElement("h4");
     name.textContent = review.customer_name;
@@ -107,6 +108,7 @@ function renderReviews(reviews = []) {
   });
 }
 
+// GALLERY
 function renderGallery(gallery = []) {
   const list = $("#galleryList");
   if (!list) return;
@@ -128,27 +130,16 @@ function renderGallery(gallery = []) {
   });
 }
 
-function escapeText(value) {
-  return String(value ?? "").replace(/[&<>"']/g, char => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
-  }[char]));
-}
-
+// WEBSITE DATA
 async function loadWebsite() {
   const data = await api("/api/public");
-
   const s = data.settings || {};
 
   document.title =
     `${s.businessName || "FABWORKS"} | Fabrication & Welding`;
 
   document.querySelectorAll(".logo").forEach(el => {
-    el.innerHTML = escapeText(s.businessName || "FABWORKS")
-      .replace(/WORKS/i, "<span>WORKS</span>");
+    el.textContent = s.businessName || "FABWORKS";
   });
 
   if ($("#heroTagline")) {
@@ -157,7 +148,8 @@ async function loadWebsite() {
   }
 
   if ($("#aboutText")) {
-    $("#aboutText").textContent = s.about || "";
+    $("#aboutText").textContent =
+      s.about || "Professional fabrication and welding services with more than 10 years of experience.";
   }
 
   if ($("#yearsBusiness")) {
@@ -186,35 +178,30 @@ async function loadWebsite() {
   renderGallery(data.gallery || []);
 }
 
-// Mobile menu
+// MOBILE MENU
 if ($("#menuToggle") && $("#mainNav")) {
   $("#menuToggle").addEventListener("click", () => {
     $("#mainNav").classList.toggle("open");
   });
 
   $("#mainNav").addEventListener("click", event => {
-    if (event.target.tagName === "A") {
+    if (event.target.closest("a")) {
       $("#mainNav").classList.remove("open");
     }
   });
 }
 
-// Website enquiry form - opens WhatsApp
+// ENQUIRY FORM
 if ($("#enquiryForm")) {
   $("#enquiryForm").addEventListener("submit", event => {
     event.preventDefault();
 
     const form = event.currentTarget;
     const status = $("#enquiryStatus");
-
-    const values = Object.fromEntries(
-      new FormData(form).entries()
-    );
+    const values = Object.fromEntries(new FormData(form).entries());
 
     if (!values.service) {
-      if (status) {
-        status.textContent = "Please select a service.";
-      }
+      if (status) status.textContent = "Please select a service.";
       return;
     }
 
@@ -239,32 +226,51 @@ Source: ASFABRICATOR Website
 
     window.open(whatsappURL, "_blank");
 
-    showToast(
-      "Your enquiry is ready. Please press Send on WhatsApp."
-    );
+    showToast("Your enquiry is ready. Please press Send on WhatsApp.");
 
     if (status) {
-      status.textContent =
-        "Please send your enquiry on WhatsApp.";
+      status.textContent = "Please send your enquiry on WhatsApp.";
     }
   });
 }
 
-// Customer review form
+// CUSTOMER REVIEW FORM
 if ($("#reviewForm")) {
   $("#reviewForm").addEventListener("submit", async event => {
     event.preventDefault();
 
     const form = event.currentTarget;
     const status = $("#reviewStatus");
-    const button = form.querySelector("button");
+    const button = form.querySelector('button[type="submit"]');
+
+    const nameInput = form.querySelector('[name="customer_name"]');
+    const ratingInput = form.querySelector('[name="rating"]');
+    const messageInput = form.querySelector('[name="message"]');
+
+    const values = {
+      customer_name: nameInput ? nameInput.value.trim() : "",
+      rating: ratingInput ? ratingInput.value : "",
+      message: messageInput ? messageInput.value.trim() : ""
+    };
+
+    console.log("REVIEW FORM VALUES:", values);
+
+    if (
+      !values.customer_name ||
+      !values.rating ||
+      !values.message ||
+      Number(values.rating) < 1 ||
+      Number(values.rating) > 5
+    ) {
+      if (status) {
+        status.textContent =
+          "Please enter your name, select a rating and write your review.";
+      }
+      return;
+    }
 
     if (button) button.disabled = true;
     if (status) status.textContent = "Submitting review...";
-
-    const values = Object.fromEntries(
-      new FormData(form).entries()
-    );
 
     try {
       const result = await api("/api/reviews", {
@@ -275,29 +281,36 @@ if ($("#reviewForm")) {
       form.reset();
 
       if (status) {
-        status.textContent = result.message;
+        status.textContent =
+          result.message || "Thank you! Your review is awaiting admin approval.";
       }
 
-      showToast(result.message);
+      showToast(
+        result.message || "Review submitted successfully."
+      );
+
     } catch (error) {
+      console.error("Review submission error:", error);
+
       if (status) {
         status.textContent = error.message;
       }
+
+      showToast(error.message);
+
     } finally {
       if (button) button.disabled = false;
     }
   });
 }
 
-// Current year
+// CURRENT YEAR
 if ($("#year")) {
   $("#year").textContent = new Date().getFullYear();
 }
 
-// Load website data
+// LOAD WEBSITE
 loadWebsite().catch(error => {
   console.error("Website loading error:", error);
-  showToast(
-    "Website data could not load. Please try again."
-  );
+  showToast("Website data could not load. Please try again.");
 });
