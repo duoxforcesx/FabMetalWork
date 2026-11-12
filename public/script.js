@@ -136,7 +136,7 @@ async function loadWebsite() {
   const s = data.settings || {};
 
   document.title =
-    `${s.businessName || "AS-FABRICATOR"} | Fabrication & Welding`;
+  `${s.businessName || "AS-FABRICATOR"} | Metal Fabrication, Welding, Gate & Grill Works in Behror`;
 
   document.querySelectorAll(".logo").forEach(el => {
     el.textContent = s.businessName || "AS-FABRICATOR";
