@@ -124,7 +124,7 @@ function renderGallery(gallery = []) {
   gallery.forEach(photo => {
     const img = document.createElement("img");
     img.src = photo.url;
-    img.alt = "Fabrication and welding project";
+    img.alt = "AS-FABRICATOR metal fabrication, welding, gate and grill work";
     img.loading = "lazy";
     list.append(img);
   });
